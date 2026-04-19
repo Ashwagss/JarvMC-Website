@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regeln - JarvMC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-black: #0D0D0D;
+            --magma-orange: #FF4500;
+            --glow-yellow: #FFD700;
+            --blood-red: #8B0000;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--deep-black);
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, .jarv-font {
+            font-family: 'Cinzel', serif;
+        }
+        
+        .ember-glow {
+            box-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
+        }
+        
+        .jarv-button {
+            background: linear-gradient(90deg, #8B0000, #FF4500);
+            color: white;
+            padding: 15px 30px;
+            border: 2px solid #FFD700;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
+        }
+        
+        .jarv-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px #FFD700;
+            background: linear-gradient(90deg, #FF4500, #FFD700);
+        }
+        
+        .parallax-bg {
+            background: linear-gradient(180deg, #0D0D0D 0%, #1a0a0a 50%, #0D0D0D 100%);
+            position: relative;
+        }
+        
+        .parallax-bg::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 69, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 0, 0, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .glass-card {
+            background: rgba(13, 13, 13, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 69, 0, 0.3);
+        }
+        
+        .status-online {
+            animation: pulse-green 2s infinite;
+        }
+        
+        @keyframes pulse-green {
+            0%, 100% { box-shadow: 0 0 5px #22c55e; }
+            50% { box-shadow: 0 0 20px #22c55e, 0 0 40px #22c55e; }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #FFD700, #FF4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .rule-card {
+            transition: all 0.3s ease;
+        }
+        
+        .rule-card:hover {
+            border-color: var(--magma-orange);
+            box-shadow: 0 0 30px rgba(255, 69, 0, 0.2);
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--deep-black);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--magma-orange);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="parallax-bg">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-card border-b border-orange-500/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-red-600 rounded-lg flex items-center justify-center ember-glow">
+                        <i data-lucide="flame" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <a href="index.html" class="text-2xl font-black jarv-font tracking-wider text-white">JARV<span class="text-orange-500">MC</span></a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-yellow-400 transition-colors duration-300 font-semibold">Home</a>
+                    <a href="rules.html" class="text-yellow-400 font-semibold">Regeln</a>
+                    <a href="features.html" class="text-gray-300 hover:text-yellow-400 transition-colors duration-300 font-semibold">Features</a>
+                    <a href="stats.html" class="text-gray-300 hover:text-yellow-400 transition-colors duration-300 font-semibold">Statistiken</a>
+                    <a href="https://discord.gg/8UWUF2Wnzf" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold flex items-center space-x-1">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        <span>Discord</span>
+                    </a>
+                </div>
+                
+                <div class="flex items-center space-x-3 bg-black/50 px-4 py-2 rounded-full border border-green-500/50">
+                    <div class="w-3 h-3 bg-green-500 rounded-full status-online"></div>
+                    <span class="text-sm font-semibold text-green-400">ONLINE</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="relative pt-32 pb-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center space-x-2 px-4 py-2 bg-red-900/30 border border-red-500/50 rounded-full mb-6 fade-in">
+                <i data-lucide="scale" class="w-4 h-4 text-red-400"></i>
+                <span class="text-red-400 text-sm font-semibold">⚖️ Das JarvMC Regelwerk</span>
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 jarv-font fade-in">
+                <span class="gradient-text">Server-Regeln</span>
+            </h1>
+            
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto fade-in">
+                Willkommen auf JarvMC! Damit wir alle eine entspannte Zeit beim Bauen und Zocken haben, 
+                gibt es hier ein festes Regelwerk. 
+                <span class="text-red-400 font-semibold">Unwissenheit schützt vor Strafe nicht</span>, 
+                also lies dir das hier gut durch.
+            </p>
+        </div>
+    </section>
+
+    <!-- Rule 1: Social Conduct -->
+    <section class="py-12 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rule-card glass-card rounded-2xl p-8 fade-in border-l-4 border-red-500">
+                <div class="flex items-start space-x-4 mb-6">
+                    <div class="w-14 h-14 bg-red-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="users" class="w-7 h-7 text-red-500"></i>
+                    </div>
+                    <div>
+                        <span class="text-red-400 text-sm font-semibold uppercase tracking-wider">Regel 1</span>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white jarv-font">Soziales Verhalten</h2>
+                        <p class="text-gray-500">Social Conduct</p>
+                    </div>
+                </div>
+                
+                <p class="text-gray-400 mb-6">Wir legen Wert auf eine Community, in der man sich wohlfühlt.</p>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-black/40 rounded-lg p-4 border border-red-500/20">
+                        <h4 class="text-red-400 font-semibold mb-2 flex items-center">
+                            <i data-lucide="heart-handshake" class="w-4 h-4 mr-2"></i>
+                            Respekt
+                        </h4>
+                        <p class="text-gray-400 text-sm">Behandle andere so, wie du auch behandelt werden möchtest. Beleidigungen, Provokationen oder toxisches Verhalten werden nicht geduldet.</p>
+                    </div>
+                    
+                    <div class="bg-black/40 rounded-lg p-4 border border-red-500/20">
+                        <h4 class="text-red-400 font-semibold mb-2 flex items-center">
+                            <i data-lucide="ban" class="w-4 h-4 mr-2"></i>
+                            Diskriminierung
+                        </h4>
+                        <p class="text-gray-400 text-sm">Rassismus, Sexismus, Homophobie oder andere Formen von Hassrede führen zu einem <span class="text-red-400 font-semibold">sofortigen und permanenten Bann</span>.</p>
+                    </div>
+                    
+                    <div class="bg-black/40 rounded-lg p-4 border border-red-500/20">
+                        <h4 class="text-red-400 font-semibold mb-2 flex items-center">
+                            <i data-lucide="message-square" class="w-4 h-4 mr-2"></i>
+                            Chat-Etikette
+                        </h4>
+                        <p class="text-gray-400 text-sm">Spamming, übermäßiges Caps-Lock oder das Betteln nach Rängen/Items nervt die anderen Spieler. Bitte lass es.</p>
+                    </div>
+                    
+                    <div class="bg-black/40 rounded-lg p-4 border border-red-500/20">
+                        <h4 class="text-red-400 font-semibold mb-2 flex items-center">
+                            <i data-lucide="lock" class="w-4 h-4 mr-2"></i>
+                            Datenschutz
+                        </h4>
+                        <p class="text-gray-400 text-sm">Das Veröffentlichen von privaten Daten (Doxing) anderer Spieler ist streng verboten.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rule 2: Plot World & Griefing -->
+    <section class="py-12 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rule-card glass-card rounded-2xl p-8 fade-in border-l-4 border-orange-500">
+                <div class="flex items-start space-x-4 mb-6">
+                    <div class="w-14 h-14 bg-orange-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="home" class="w-7 h-7 text-orange-500"></i>
+                    </div>
+                    <div>
+                        <span class="text-orange-400 text-sm font-semibold uppercase tracking-wider">Regel 2</span>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white jarv-font">Die Plot-Welt & Griefing-Verbot</h2>
+                    </div>
+                </div>
+                
+                <p class="text-gray-400 mb-6">In der Plot-Welt ist dein Grundstück dein Heiligtum – und das der anderen auch.</p>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-4 bg-black/40 rounded-lg p-4 border border-orange-500/20">
+                        <div class="w-10 h-10 bg-red-600/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i data-lucide="shield-alert" class="w-5 h-5 text-red-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-orange-400 font-semibold mb-1">Griefing-Verbot</h4>
+                            <p class="text-gray-400 text-sm">Es ist streng untersagt, die Grundstücke anderer Spieler zu beschädigen oder zu verändern, <span class="text-orange-400">selbst wenn du Baurechte hast</span>.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4 bg-black/40 rounded-lg p-4 border border-orange-500/20">
+                        <div class="w-10 h-10 bg-yellow-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i data-lucide="bug" class="w-5 h-5 text-yellow-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-orange-400 font-semibold mb-1">Glitch-Warnung</h4>
+                            <p class="text-gray-400 text-sm">Da es aktuell noch technische Glitches gibt, durch die man eventuell fremde Plots manipulieren könnte, ist das Ausnutzen dieser Fehler <span class="text-red-400 font-semibold">streng verboten</span>.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4 bg-black/40 rounded-lg p-4 border border-green-500/20">
+                        <div class="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i data-lucide="megaphone" class="w-5 h-5 text-green-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-green-400 font-semibold mb-1">Meldepflicht</h4>
+                            <p class="text-gray-400 text-sm">Wenn du einen Glitch findest, mit dem man griefen könnte, melde ihn sofort dem Team. Wer Fehler ausnutzt ("Exploiting"), riskiert seinen <span class="text-red-400 font-semibold">gesamten Fortschritt</span>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rule 3: Client Modifications -->
+    <section class="py-12 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rule-card glass-card rounded-2xl p-8 fade-in border-l-4 border-yellow-400">
+                <div class="flex items-start space-x-4 mb-6">
+                    <div class="w-14 h-14 bg-yellow-400/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="cpu" class="w-7 h-7 text-yellow-400"></i>
+                    </div>
+                    <div>
+                        <span class="text-yellow-400 text-sm font-semibold uppercase tracking-wider">Regel 3</span>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white jarv-font">Client-Modifikationen & Fairplay</h2>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-red-900/20 rounded-xl p-5 border border-red-500/30">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <i data-lucide="x-circle" class="w-5 h-5 text-red-500"></i>
+                            <h4 class="text-red-400 font-bold">Verboten</h4>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">Die Nutzung von Hacks/Cheats ist verboten:</p>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li class="flex items-center"><i data-lucide="sword" class="w-3 h-3 mr-2 text-red-500"></i> Killaura</li>
+                            <li class="flex items-center"><i data-lucide="feather" class="w-3 h-3 mr-2 text-red-500"></i> Fly-Hacks</li>
+                            <li class="flex items-center"><i data-lucide="eye" class="w-3 h-3 mr-2 text-red-500"></i> X-Ray</li>
+                            <li class="flex items-center"><i data-lucide="mouse-pointer-click" class="w-3 h-3 mr-2 text-red-500"></i> Autoclicker / Makros</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-green-900/20 rounded-xl p-5 border border-green-500/30">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <h4 class="text-green-400 font-bold">Erlaubt</h4>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">Rein optische Mods und Performance-Verbesserer:</p>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li class="flex items-center"><i data-lucide="check" class="w-3 h-3 mr-2 text-green-500"></i> LabyMod</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-3 h-3 mr-2 text-green-500"></i> Iris Shaders</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-3 h-3 mr-2 text-green-500"></i> Sodium</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-3 h-3 mr-2 text-green-500"></i> Optifine</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rule 4: Economy -->
+    <section class="py-12 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rule-card glass-card rounded-2xl p-8 fade-in border-l-4 border-green-500">
+                <div class="flex items-start space-x-4 mb-6">
+                    <div class="w-14 h-14 bg-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="coins" class="w-7 h-7 text-green-500"></i>
+                    </div>
+                    <div>
+                        <span class="text-green-400 text-sm font-semibold uppercase tracking-wider">Regel 4</span>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white jarv-font">Handel & In-Game Wirtschaft</h2>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="bg-black/40 rounded-lg p-5 border border-red-500/30">
+                        <h4 class="text-red-400 font-semibold mb-2 flex items-center">
+                            <i data-lucide="banknote" class="w-5 h-5 mr-2"></i>
+                            Echtgeld-Handel (RMT) Verboten
+                        </h4>
+                        <p class="text-gray-400">Es ist verboten, In-Game Items, Grundstücke oder Währung gegen echtes Geld (PayPal, Paysafecard etc.) zu verkaufen oder zu kaufen.</p>
+                    </div>
+                    
+                    <div class="bg-black/40 rounded-lg p-5 border border-orange-500/30">
+                        <h4 class="text-orange-400 font-semibold mb-2 flex items-center">
+                            <i data-lucide="alert-triangle" class="w-5 h-5 mr-2"></i>
+                            Scamming = Betrug
+                        </h4>
+                        <p class="text-gray-400">Betrug bei Handelsgeschäften zwischen Spielern wird bestraft. Nutzt für sichere Trades die offiziellen Handels-Befehle oder einen Mittelsmann aus dem Team.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rule 5: Building Rules -->
+    <section class="py-12 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rule-card glass-card rounded-2xl p-8 fade-in border-l-4 border-purple-500">
+                <div class="flex items-start space-x-4 mb-6">
+                    <div class="w-14 h-14 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="hammer" class="w-7 h-7 text-purple-500"></i>
+                    </div>
+                    <div>
+                        <span class="text-purple-400 text-sm font-semibold uppercase tracking-wider">Regel 5</span>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white jarv-font">Bauregeln & Welt-Sauberkeit</h2>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-black/40 rounded-lg p-4 border border-red-500/20">
+                        <h4 class="text-red-400 font-semibold mb-2">Anstößige Bauwerke</h4>
+                        <p class="text-gray-400 text-sm">Nationalsozialistische Symbole, pornografische Darstellungen oder beleidigende Strukturen führen zum <span class="text-red-400">Abriss des Plots und einem Bann</span>.</p>
+                    </div>
+                    
+                    <div class="bg-black/40 rounded-lg p-4 border border-orange-500/20">
+                        <h4 class="text-orange-400 font-semibold mb-2">Lag-Maschinen</h4>
+                        <p class="text-gray-400 text-sm">Bauwerke, die absichtlich darauf ausgelegt sind, die Server-Performance zu drosseln (massive Redstone-Loops oder hunderte Entities), sind untersagt.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rule 6: Advertising -->
+    <section class="py-12 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rule-card glass-card rounded-2xl p-8 fade-in border-l-4 border-blue-500">
+                <div class="flex items-start space-x-4 mb-6">
+                    <div class="w-14 h-14 bg-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="megaphone" class="w-7 h-7 text-blue-500"></i>
+                    </div>
+                    <div>
+                        <span class="text-blue-400 text-sm font-semibold uppercase tracking-wider">Regel 6</span>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white jarv-font">Werbung & Fremdwerbung</h2>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-3 bg-red-900/20 rounded-lg p-4 border border-red-500/30">
+                        <i data-lucide="ban" class="w-5 h-5 text-red-500 mt-0.5"></i>
+                        <div>
+                            <h4 class="text-red-400 font-semibold">Keine Fremdwerbung</h4>
+                            <p class="text-gray-400 text-sm">Das Posten von IPs anderer Server oder Links zu fremden Discord-Servern im öffentlichen Chat ist nicht erlaubt.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-3 bg-yellow-900/20 rounded-lg p-4 border border-yellow-500/30">
+                        <i data-lucide="info" class="w-5 h-5 text-yellow-500 mt-0.5"></i>
+                        <div>
+                            <h4 class="text-yellow-400 font-semibold">Eigenwerbung</h4>
+                            <p class="text-gray-400 text-sm">Werbung für deinen eigenen Twitch- oder YouTube-Kanal ist nur nach Absprache mit der Administration oder ab einem bestimmten Rang in Maßen gestattet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rule 7: Account Responsibility -->
+    <section class="py-12 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rule-card glass-card rounded-2xl p-8 fade-in border-l-4 border-pink-500">
+                <div class="flex items-start space-x-4 mb-6">
+                    <div class="w-14 h-14 bg-pink-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="user-circle" class="w-7 h-7 text-pink-500"></i>
+                    </div>
+                    <div>
+                        <span class="text-pink-400 text-sm font-semibold uppercase tracking-wider">Regel 7</span>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white jarv-font">Account-Verantwortung</h2>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-pink-900/20 to-red-900/20 rounded-xl p-6 border border-pink-500/30">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-pink-500"></i>
+                        <h4 class="text-pink-400 font-bold text-lg">Dein Account, deine Verantwortung</h4>
+                    </div>
+                    <p class="text-gray-400">Du bist für alles verantwortlich, was über deinen Account passiert. Sätze wie <span class="text-yellow-400 italic">"Mein kleiner Bruder war das"</span> zählen im Falle eines Regelverstoßes nicht als Entschuldigung.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consequences Section -->
+    <section class="py-16 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-2xl p-8 fade-in border border-red-500/30">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 jarv-font text-red-400">Konsequenzen bei Regelverstößen</h2>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="alert-triangle" class="w-8 h-8 text-yellow-500"></i>
+                        </div>
+                        <h4 class="text-yellow-400 font-bold mb-2">Verwarnung</h4>
+                        <p class="text-gray-400 text-sm">Bei kleineren Verstößen oder erstmaligen Vergehen</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="clock" class="w-8 h-8 text-orange-500"></i>
+                        </div>
+                        <h4 class="text-orange-400 font-bold mb-2">Temporärer Bann</h4>
+                        <p class="text-gray-400 text-sm">Bei wiederholten oder schwereren Verstößen (1-30 Tage)</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="ban" class="w-8 h-8 text-red-500"></i>
+                        </div>
+                        <h4 class="text-red-400 font-bold mb-2">Permanenter Bann</h4>
+                        <p class="text-gray-400 text-sm">Bei schweren Verstößen wie Hacking, Griefing, Diskriminierung</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-12 pb-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="glass-card rounded-2xl p-8 fade-in">
+                <h2 class="text-2xl font-bold mb-4 jarv-font text-white">Fragen zu den Regeln?</h2>
+                <p class="text-gray-400 mb-6">Bei Unklarheiten oder Fragen zum Regelwerk kontaktiere unser Team.</p>
+                <a href="index.html" class="jarv-button rounded-lg inline-flex items-center space-x-2">
+                    <i data-lucide="home" class="w-5 h-5"></i>
+                    <span>Zurück zur Startseite</span>
+                </a>
+                <a href="https://discord.gg/8UWUF2Wnzf" target="_blank" class="px-6 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg font-bold uppercase tracking-wider transition-all duration-300 inline-flex items-center space-x-2">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    <span>Discord beitreten</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-orange-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                    <div class="w-8 h-8 bg-gradient-to-br from-yellow-400 to-red-600 rounded-lg flex items-center justify-center">
+                        <i data-lucide="flame" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold jarv-font">JARV<span class="text-orange-500">MC</span></span>
+                </div>
+                
+                <div class="flex items-center space-x-6">
+                    <a href="https://discord.gg/8UWUF2Wnzf" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition-colors" title="Discord">
+                        <i data-lucide="message-circle" class="w-6 h-6"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors" title="GitHub">
+                        <i data-lucide="github" class="w-6 h-6"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors" title="Twitter">
+                        <i data-lucide="twitter" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-6 pt-6 border-t border-white/10 text-sm">
+                <a href="imprint.html" class="text-orange-400 hover:text-orange-300">Impressum</a>
+                <span class="text-gray-600 hidden md:inline">|</span>
+                <a href="privacy.html" class="text-orange-400 hover:text-orange-300">Datenschutz</a>
+            </div>
+            
+            <div class="text-center pt-4">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2024 JarvMC. Das Regelwerk kann sich ändern. Letzte Aktualisierung: April 2024
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight * 0.85;
+                if (isVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', handleScrollAnimations);
+        window.addEventListener('load', handleScrollAnimations);
+    </script>
+</body>
+</html>

@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenschutzerklärung - JarvMC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-black: #0D0D0D;
+            --magma-orange: #FF4500;
+            --glow-yellow: #FFD700;
+            --blood-red: #8B0000;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--deep-black);
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+        
+        h1, h2, h3, .jarv-font {
+            font-family: 'Cinzel', serif;
+        }
+        
+        .ember-glow {
+            box-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
+        }
+        
+        .jarv-button {
+            background: linear-gradient(90deg, #8B0000, #FF4500);
+            color: white;
+            padding: 15px 30px;
+            border: 2px solid #FFD700;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
+        }
+        
+        .jarv-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px #FFD700;
+            background: linear-gradient(90deg, #FF4500, #FFD700);
+        }
+        
+        .parallax-bg {
+            background: linear-gradient(180deg, #0D0D0D 0%, #1a0a0a 50%, #0D0D0D 100%);
+            position: relative;
+        }
+        
+        .parallax-bg::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 69, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 0, 0, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .glass-card {
+            background: rgba(13, 13, 13, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 69, 0, 0.3);
+        }
+        
+        .status-online {
+            animation: pulse-green 2s infinite;
+        }
+        
+        @keyframes pulse-green {
+            0%, 100% { box-shadow: 0 0 5px #22c55e; }
+            50% { box-shadow: 0 0 20px #22c55e, 0 0 40px #22c55e; }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #FFD700, #FF4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--deep-black);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--magma-orange);
+            border-radius: 4px;
+        }
+        
+        .privacy-section {
+            margin-bottom: 3rem;
+        }
+        
+        .privacy-section h2 {
+            color: var(--magma-orange);
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .privacy-section h3 {
+            color: var(--glow-yellow);
+            margin-bottom: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        
+        .privacy-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .privacy-list li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+        
+        .privacy-list li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--magma-orange);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="parallax-bg">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-card border-b border-orange-500/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-red-600 rounded-lg flex items-center justify-center ember-glow">
+                        <i data-lucide="flame" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <a href="index.html" class="text-2xl font-black jarv-font tracking-wider text-white">JARV<span class="text-orange-500">MC</span></a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-yellow-400 transition-colors duration-300 font-semibold">Home</a>
+                    <a href="rules.html" class="text-gray-300 hover:text-yellow-400 transition-colors duration-300 font-semibold">Regeln</a>
+                    <a href="features.html" class="text-gray-300 hover:text-yellow-400 transition-colors duration-300 font-semibold">Features</a>
+                    <a href="stats.html" class="text-gray-300 hover:text-yellow-400 transition-colors duration-300 font-semibold">Statistiken</a>
+                    <a href="https://discord.gg/8UWUF2Wnzf" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold flex items-center space-x-1">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        <span>Discord</span>
+                    </a>
+                </div>
+                
+                <div class="flex items-center space-x-3 bg-black/50 px-4 py-2 rounded-full border border-green-500/50">
+                    <div class="w-3 h-3 bg-green-500 rounded-full status-online"></div>
+                    <span class="text-sm font-semibold text-green-400">ONLINE</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="relative pt-32 pb-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center space-x-2 px-4 py-2 bg-green-900/30 border border-green-500/50 rounded-full mb-6 fade-in">
+                <i data-lucide="shield-check" class="w-4 h-4 text-green-400"></i>
+                <span class="text-green-400 text-sm font-semibold">Datenschutz & Privatsphäre</span>
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 jarv-font fade-in">
+                <span class="gradient-text">Datenschutzerklärung</span>
+            </h1>
+            
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto fade-in">
+                Informationen zur Verarbeitung personenbezogener Daten nach DSGVO
+            </p>
+        </div>
+    </section>
+
+    <!-- Privacy Content -->
+    <section class="py-12 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-2xl p-8 md:p-12 fade-in">
+                
+                <div class="privacy-section">
+                    <p class="text-gray-400 mb-6">
+                        Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Diese Datenschutzerklärung informiert Sie darüber, 
+                        welche Daten wir erheben, wie wir sie verwenden und welche Rechte Sie haben. 
+                        Stand: April 2024
+                    </p>
+                </div>
+
+                <!-- 1. Responsible -->
+                <div class="privacy-section">
+                    <h2 class="text-2xl font-bold jarv-font">1. Verantwortlicher</h2>
+                    <div class="bg-black/40 rounded-xl p-6 border border-orange-500/20">
+                        <p class="text-white mb-2"><strong>Taylor Ash Kunze*</strong></p>
+                        <p class="text-gray-400">Kirchstraße 42</p>
+                        <p class="text-gray-400">50189 Elsdorf / Niederembt</p>
+                        <p class="text-gray-400 mb-4">Deutschland</p>
+                        
+                        <div class="flex items-center space-x-3 mb-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-orange-500"></i>
+                            <a href="tel:01794152056" class="text-gray-300 hover:text-orange-400 transition-colors">0179 4152056</a>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="message-circle" class="w-4 h-4 text-indigo-500"></i>
+                            <span class="text-gray-300">Discord: jarvmc.com/discord</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Scope -->
+                <div class="privacy-section">
+                    <h2 class="text-2xl font-bold jarv-font">2. Geltungsbereich</h2>
+                    <p class="text-gray-400">
+                        Diese Datenschutzerklärung gilt für alle Dienste, die wir über die Website jarvmc.com 
+                        sowie den Minecraft-Server "JarvMC" anbieten. Dazu gehören:
+                    </p>
+                    <ul class="privacy-list text-gray-400 mt-3">
+                        <li>Die JarvMC Website (jarvmc.com)</li>
+                        <li>Der JarvMC Minecraft-Server</li>
+                        <li>Der JarvMC Discord-Server</li>
+                        <li>Alle damit verbundenen Subdomains und Dienste</li>
+                    </ul>
+                </div>
+
+                <!-- 3. Data Collection -->
+                <div class="privacy-section">
+                    <h2 class="text-2xl font-bold jarv-font">3. Welche Daten erheben wir?</h2>
+                    
+                    <h3 class="text-lg font-semibold">3.1 Website-Besuch (Server-Logfiles)</h3>
+                    <p class="text-gray-400">
+                        Beim Besuch unserer Website werden automatisch technische Daten erfasst:
+                    </p>
+                    <ul class="privacy-list text-gray-400 mt-2">
+                        <li>IP-Adresse (anonymisiert/gespeichert)</li>
+                        <li>Datum und Uhrzeit des Zugriffs</li>
+                        <li>Browsertyp und -version</li>
+                        <li>Verwendetes Betriebssystem</li>
+                        <li>Referrer URL (die zuvor besuchte Seite)</li>
+                        <li>Angeforderte Datei/Seite</li>
+                        <li>HTTP-Statuscode</li>
+                    </ul>
+                    <p class="text-gray-500 text-sm mt-3">
+                        <strong>Rechtsgrundlage:</strong> Berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGVO) zur Sicherstellung 
+                        der Funktionsfähigkeit und Sicherheit der Website.
+                    </p>
+
+                    <h3 class="text-lg font-semibold">3.2 Minecraft-Server</h3>
+                    <p class="text-gray-400">
+                        Bei der Nutzung unseres Minecraft-Servers werden folgende Daten verarbeitet:
+                    </p>
+                    <ul class="privacy-list text-gray-400 mt-2">
+                        <li>Minecraft-Username (Spielername)</li>
+                        <li>Minecraft UUID (Universally Unique Identifier)</li>
+                        <li>IP-Adresse (zur Verbindungsherstellung und Sicherheit)</li>
+                        <li>Spielaktivitäten (z.B. gebaute Strukturen, Chat-Nachrichten)</li>
+                        <li>Login-/Logout-Zeiten</li>
+                        <li>Verwarnungen/Bans im Spiel</li>
+                    </ul>
+                    <p class="text-gray-500 text-sm mt-3">
+                        <strong>Rechtsgrundlage:</strong> Erfüllung des Vertrags (Art. 6 Abs. 1 lit. b DSGVO) für die 
+                        Bereitstellung des Spielservices sowie berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGGO) 
+                        zur Moderation und Sicherheit.
+                    </p>
+
+                    <h3 class="text-lg font-semibold">3.3 Discord-Server</h3>
+                    <p class="text-gray-400">
+                        Bei der Teilnahme an unserem Discord-Server werden verarbeitet:
+                    </p>
+                    <ul class="privacy-list text-gray-400 mt-2">
+                        <li>Discord-Username und -ID</li>
+                        <li>Chat-Nachrichten im Discord</li>
+                        <li>Sprachchat-Teilnahme (nur Metadaten, keine Aufzeichnungen)</li>
+                        <li>Zeitstempel von Aktivitäten</li>
+                    </ul>
+                    <p class="text-gray-500 text-sm mt-3">
+                        Discord Ltd. ist als Auftragsverarbeiter tätig. Die Discord-Datenschutzerklärung 
+                        gilt ergänzend: <a href="https://discord.com/privacy" target="_blank" class="text-orange-400 hover:underline">discord.com/privacy</a>
+                    </p>
+                </div>
+
+                <!-- 4. Purpose -->
+                <div class="privacy-section">
+                    <h2 class="text-2xl font-bold jarv-font">4. Zweck der Datenverarbeitung</h2>
+                    <p class="text-gray-400">Wir verwenden die erhobenen Daten für folgende Zwecke:</p>
+                    <ul class="privacy-list text-gray-400 mt-3">
+                        <li>Bereitstellung und Verbesserung des Minecraft-Servers</li>
+                        <li>Technische Sicherheit (DDoS-Schutz, Anti-Cheat)</li>
+                        <li>Moderation und Durchsetzung der Server-Regeln</li>
+                        <li>Kommunikation mit Spielern (Support, Ankündigungen)</li>
+                        <li>Erstellung anonymer Statistiken zur Server-Nutzung</li>
+                        <li>Backup und Wiederherstellung von Spielerdaten</li>
+                    </ul>
+                </div>
+
+                <!-- 5. Third Party -->
+                <div class="privacy-section">
+                    <h2 class="text-2xl font-bold jarv-font">5. Drittanbieter und externe Dienste</h2>
+                    
+                    <h3 class="text-lg font-semibold">5.1 Discord</h3>
+                    <p class="text-gray-400">
+                        Für Community-Kommunikation nutzen wir Discord. Discord Ltd. (USA) verarbeitet 
+                        Daten gemäß ihrer eigenen Datenschutzerklärung. Wir haben keinen Einfluss auf 
+                        die Datenverarbeitung durch Discord.
+                    </p>
+
+                    <h3 class="text-lg font-semibold">5.2 mcsrvstat.us API</h3>
+                    <p class="text-gray-400">
+                        Für die Anzeige von Server-Statistiken auf unserer Website nutzen wir die API 
+                        von mcsrvstat.us. Dabei wird die Server-IP übermittelt, um Status-Informationen abzurufen. 
+                        Es werden keine personenbezogenen Daten übermittelt.
+                    </p>
+
+                    <h3 class="text-lg font-semibold">5.3 mc-heads.net</h3>
+                    <p class="text-gray-400">
+                        Für die Anzeige von Minecraft-Spieler-Köpfen nutzen wir mc-heads.net. 
+                        Dabei wird der Minecraft-Username oder die UUID übermittelt, um das Avatar-Bild zu laden.
+                    </p>
+
+                    <h3 class="text-lg font-semibold">5.4 Hosting & CDN</h3>
+                    <p class="text-gray-400">
+                        Wir nutzen externe Hosting-Dienste und CDNs zur Auslieferung von Website-Inhalten 
+                        (z.B. Tailwind CSS CDN, Google Fonts, Lucide Icons). Diese Dienste können 
+                        technische Daten (IP-Adresse, Zugriffszeiten) verarbeiten.
+                    </p>
+                </div>
+
+                <!-- 6. Storage -->
+                <div class="privacy-section">
+                    <h2 class="text-2xl font-bold jarv-font">6. Speicherdauer</h2>
+                    <table class="w-full text-left text-gray-400 border-collapse mt-4">
+                        <thead>
+                            <tr class="border-b border-orange-500/30">
+                                <th class="py-3 pr-4 text-orange-400">Datentyp</th>
+                                <th class="py-3 text-orange-400">Speicherdauer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 pr-4">Server-Logfiles</td>
+                                <td>7 Tage</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 pr-4">Minecraft-Spieldaten</td>
+                                <td>Dauer der Kontonutzung + 30 Tage</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 pr-4">Chat-Logs (Discord/MC)</td>
+                                <td>90 Tage</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="py-3 pr-4">Ban-/Warn-Daten</td>
+                                <td>1 Jahr nach Aufhebung</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 pr-4">Support-Anfragen</td>
+                                <td>1 Jahr nach Abschluss</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 7. Rights -->
+                <div class="privacy-section">
+                    <h2 class="text-2xl font-bold jarv-font">7. Ihre Rechte als betroffene Person</h2>
+                    <p class="text-gray-400">
+                        Nach der DSGVO haben Sie folgende Rechte bezüglich Ihrer personenbezogenen Daten:
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-4 mt-4">
+                        <div class="bg-black/40 rounded-lg p-4 border border-orange-500/20">
+                            <h4 class="text-orange-400 font-semibold mb-2 flex items-center">
+                                <i data-lucide="eye" class="w-4 h-4 mr-2"></i>
+                                Auskunftsrecht (Art. 15 DSGVO)
+                            </h4>
+                            <p class="text-sm text-gray-400">Sie können jederzeit Auskunft über die von uns gespeicherten Daten zu Ihrer Person verlangen.</p>
+                        </div>
+                        
+                        <div class="bg-black/40 rounded-lg p-4 border border-orange-500/20">
+                            <h4 class="text-orange-400 font-semibold mb-2 flex items-center">
+                                <i data-lucide="edit" class="w-4 h-4 mr-2"></i>
+                                Berichtigungsrecht (Art. 16 DSGVO)
+                            </h4>
+                            <p class="text-sm text-gray-400">Sie haben das Recht, unrichtige Daten berichtigen zu lassen.</p>
+                        </div>
+                        
+                        <div class="bg-black/40 rounded-lg p-4 border border-orange-500/20">
+                            <h4 class="text-orange-400 font-semibold mb-2 flex items-center">
+                                <i data-lucide="trash-2" class="w-4 h-4 mr-2"></i>
+                                Löschungsrecht (Art. 17 DSGVO)
+                            </h4>
+                            <p class="text-sm text-gray-400">„Recht auf Vergessenwerden“ – Löschung Ihrer Daten unter bestimmten Voraussetzungen.</p>
+                        </div>
+                        
+                        <div class="bg-black/40 rounded-lg p-4 border border-orange-500/20">
+                            <h4 class="text-orange-400 font-semibold mb-2 flex items-center">
+                                <i data-lucide="pause" class="w-4 h-4 mr-2"></i>
+                                Einschränkung (Art. 18 DSGVO)
+                            </h4>
+                            <p class="text-sm text-gray-400">Einschränkung der Verarbeitung unter bestimmten Bedingungen.</p>
+                        </div>
+                        
+                        <div class="bg-black/40 rounded-lg p-4 border border-orange-500/20">
+                            <h4 class="text-orange-400 font-semibold mb-2 flex items-center">
+                                <i data-lucide="download" class="w-4 h-4 mr-2"></i>
+                                Datenübertragbarkeit (Art. 20 DSGVO)
+                            </h4>
+                            <p class="text-sm text-gray-400">Sie können Ihre Daten in einem maschinenlesbaren Format erhalten.</p>
+                        </div>
+                        
+                        <div class="bg-black/40 rounded-lg p-4 border border-orange-500/20">
+                            <h4 class="text-orange-400 font-semibold mb-2 flex items-center">
+                                <i data-lucide="x-circle" class="w-4 h-4 mr-2"></i>
+                                Widerspruchsrecht (Art. 21 DSGVO)
+                            </h4>
+                            <p class="text-sm text-gray-400">Widerspruch gegen die Verarbeitung Ihrer Daten.</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-400 mt-6">
+                        Zur Ausübung Ihrer Rechte kontaktieren Sie uns bitte unter den im Impressum genannten Kontaktdaten. 
+                        Wir werden Ihr Anliegen innerhalb von 30 Tagen bearbeiten.
+                    </p>
+                </div>
+
+                <!-- 8. Cookies -->
+                <div class="privacy-section">
+                    <h2 class="text-2xl font-bold jarv-font">8. Cookies und lokale Speicherung</h2>
+                    <p class="text-gray-400">
+                        Unsere Website verwendet keine Tracking-Cookies. Wir nutzen lediglich technisch notwendige 
+                        Cookies für die Grundfunktionalität:
+                    </p>
+                    <ul class="privacy-list text-gray-400 mt-3">
+                        <li><strong>Keine Werbe-Cookies</strong> – wir schalten keine Werbung</li>
+                        <li><strong>Keine Analyse-Cookies</strong> – kein Google Analytics o.ä.</li>
+                        <li><strong>Keine Tracking-Pixel</strong> – keine Drittanbieter-Tracking</li>
+                        <li>Lokaler Speicher (LocalStorage) wird nicht verwendet</li>
+                    </ul>
+                </div>
+
+                <!-- 9. Security -->
+                <div class="privacy-section">
+                    <h2 class="text-2xl font-bold jarv-font">9. Datensicherheit</h2>
+                    <p class="text-gray-400">
+                        Wir setzen technische und organisatorische Sicherheitsmaßnahmen ein, um Ihre Daten zu schützen:
+                    </p>
+                    <ul class="privacy-list text-gray-400 mt-3">
+                        <li>SSL/TLS-Verschlüsselung für alle Website-Verbindungen (HTTPS)</li>
+                        <li>Regelmäßige Sicherheitsupdates des Servers</li>
+                        <li>Zugriffskontrolle auf personenbezogene Daten (nur berechtigte Admins)</li>
+                        <li>Regelmäßige Backups zur Datensicherheit</li>
+                        <li>Firewall- und DDoS-Schutzmaßnahmen</li>
+                    </ul>
+                </div>
+
+                <!-- 10. Children -->
+                <div class="privacy-section">
+                    <h2 class="text-2xl font-bold jarv-font">10. Kinder und Jugendliche</h2>
+                    <p class="text-gray-400">
+                        Unser Dienst richtet sich an Nutzer jeden Alters. Personen unter 16 Jahren sollten 
+                        jedoch die Zustimmung eines Elternteils oder Erziehungsberechtigten einholen, 
+                        bevor sie personenbezogene Daten angeben. Wir sammeln wissentlich keine Daten 
+                        von Kindern unter 13 Jahren ohne elterliche Zustimmung.
+                    </p>
+                </div>
+
+                <!-- 11. Changes -->
+                <div class="privacy-section">
+                    <h2 class="text-2xl font-bold jarv-font">11. Änderungen der Datenschutzerklärung</h2>
+                    <p class="text-gray-400">
+                        Wir behalten uns vor, diese Datenschutzerklärung bei Bedarf anzupassen, 
+                        um sie an geänderte rechtliche Anforderungen oder Änderungen unserer Dienste anzupassen. 
+                        Die aktuelle Version ist stets auf dieser Seite verfügbar. Bei wesentlichen Änderungen 
+                        informieren wir die Nutzer über den Discord-Server oder die Website.
+                    </p>
+                </div>
+
+                <!-- 12. Contact -->
+                <div class="privacy-section">
+                    <h2 class="text-2xl font-bold jarv-font">12. Kontakt zum Datenschutz</h2>
+                    <p class="text-gray-400">
+                        Bei Fragen zum Datenschutz oder zur Ausübung Ihrer Rechte kontaktieren Sie uns:
+                    </p>
+                    <div class="bg-black/40 rounded-xl p-6 border border-orange-500/20 mt-4">
+                        <p class="text-white mb-2"><strong>Taylor Ash Kunze*</strong></p>
+                        <p class="text-gray-400">Telefon: 0179 4152056</p>
+                        <p class="text-gray-400">Oder via Discord: discord.gg/8UWUF2Wnzf</p>
+                    </div>
+                </div>
+
+                <!-- Complaint Right -->
+                <div class="privacy-section">
+                    <h2 class="text-2xl font-bold jarv-font">Beschwerderecht bei der Aufsichtsbehörde</h2>
+                    <p class="text-gray-400">
+                        Unbeschadet eines anderweitigen verwaltungsrechtlichen oder gerichtlichen Rechtsbehelfs 
+                        steht Ihnen das Recht zu, sich bei der zuständigen Datenschutzaufsichtsbehörde zu beschweren, 
+                        wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer personenbezogenen Daten gegen die DSGVO verstößt.
+                    </p>
+                    <p class="text-gray-400 mt-4">
+                        <strong>Zuständige Aufsichtsbehörde:</strong><br>
+                        Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen<br>
+                        Kavalleriestraße 2-4<br>
+                        40213 Düsseldorf<br>
+                        Telefon: 0211/38424-0<br>
+                        E-Mail: poststelle@ldi.nrw.de
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="py-12 pb-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-2xl p-8 fade-in">
+                <h2 class="text-2xl font-bold mb-6 text-center jarv-font text-white">Weitere Informationen</h2>
+                <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="imprint.html" class="jarv-button rounded-lg inline-flex items-center space-x-2">
+                        <i data-lucide="file-text" class="w-5 h-5"></i>
+                        <span>Impressum</span>
+                    </a>
+                    <a href="index.html" class="px-6 py-4 border-2 border-orange-500/50 text-orange-400 rounded-lg font-bold uppercase tracking-wider hover:bg-orange-500/10 transition-all duration-300 inline-flex items-center space-x-2">
+                        <i data-lucide="home" class="w-5 h-5"></i>
+                        <span>Zur Startseite</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-orange-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                    <div class="w-8 h-8 bg-gradient-to-br from-yellow-400 to-red-600 rounded-lg flex items-center justify-center">
+                        <i data-lucide="flame" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold jarv-font">JARV<span class="text-orange-500">MC</span></span>
+                </div>
+                
+                <div class="flex items-center space-x-6">
+                    <a href="https://discord.gg/8UWUF2Wnzf" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition-colors" title="Discord">
+                        <i data-lucide="message-circle" class="w-6 h-6"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors" title="GitHub">
+                        <i data-lucide="github" class="w-6 h-6"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors" title="Twitter">
+                        <i data-lucide="twitter" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-6 pt-6 border-t border-white/10 text-sm">
+                <a href="imprint.html" class="text-orange-400 hover:text-orange-300">Impressum</a>
+                <span class="text-gray-600 hidden md:inline">|</span>
+                <a href="privacy.html" class="text-orange-400 hover:text-orange-300">Datenschutz</a>
+            </div>
+            
+            <div class="text-center pt-4">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2024 JarvMC. Alle Rechte vorbehalten.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight * 0.85;
+                if (isVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', handleScrollAnimations);
+        window.addEventListener('load', handleScrollAnimations);
+    </script>
+</body>
+</html>
